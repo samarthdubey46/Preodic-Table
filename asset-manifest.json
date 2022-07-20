@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.5cf427ee.css",
-    "main.js": "/react-gh-pages/static/js/main.87793f95.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.5cf427ee.css.map": "/react-gh-pages/static/css/main.5cf427ee.css.map",
-    "main.87793f95.js.map": "/react-gh-pages/static/js/main.87793f95.js.map"
+    "main.css": "/Preodic-Table/static/css/main.5cf427ee.css",
+    "main.js": "/Preodic-Table/static/js/main.87793f95.js",
+    "index.html": "/Preodic-Table/index.html",
+    "main.5cf427ee.css.map": "/Preodic-Table/static/css/main.5cf427ee.css.map",
+    "main.87793f95.js.map": "/Preodic-Table/static/js/main.87793f95.js.map"
   },
   "entrypoints": [
     "static/css/main.5cf427ee.css",
