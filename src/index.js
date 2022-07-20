@@ -7,14 +7,14 @@ import Home from "./pages/home";
 import {
     BrowserRouter,
     Routes,
-    Route,
+    Route, HashRouter,
 } from "react-router-dom";
 import Practice from "./pages/Practice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Header/>
 
             <Routes>
@@ -22,7 +22,7 @@ root.render(
                 <Route path='practice' element={<Practice/>}/>
 
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 );
 
