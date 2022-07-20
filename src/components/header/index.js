@@ -13,17 +13,17 @@ const Header = () => {
             <nav className="">
                 <ul className="nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <NavLink exact to="" activeClassName="active"
+                        <NavLink to="/" activeClassName="active"
                                  className={`${splitLocation[1] === '' ? 'active-nav nav-link' : 'nav-link '}`}>Home</NavLink>
                     </li>
                     {/*<li className="nav-item">*/}
                     {/*    <a className="nav-link" href="/Learn">Learn</a>*/}
                     {/*</li>*/}
                     <li className="nav-item">
-                        <Link className={splitLocation[1] === 'practice' ? 'active-nav nav-link' : 'nav-link'} to="practice">Practice</Link>
+                        <Link className={splitLocation[1] === 'practice' ? 'active-nav nav-link' : 'nav-link'} to="/practice">Practice</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={splitLocation[1] === 'tricks' ? 'active-nav nav-link' : 'nav-link '} to="tricks">Tricks</Link>
+                        <Link className={splitLocation[1] === 'tricks' ? 'active-nav nav-link' : 'nav-link '} to="/tricks">Tricks</Link>
                     </li>
                 </ul>
             </nav>

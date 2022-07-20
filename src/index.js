@@ -18,8 +18,8 @@ root.render(
             <Header/>
 
             <Routes>
-                <Route path="" element={<Home/>}/>
-                <Route path='practice' element={<Practice/>}/>
+                <Route path="/" element={<Home/>}/>
+                <Route path='/practice' element={<Practice/>}/>
 
             </Routes>
         </HashRouter>
