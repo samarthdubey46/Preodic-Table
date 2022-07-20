@@ -1,0 +1,113 @@
+import React, {useEffect, useState} from "react";
+import data from '../../Data/preodic.json'
+import {COLOR_CATEGORY, getPadding, getPeriods, groups} from "../../Data";
+
+const Element = ({element, star = 0, empty = false}) => {
+    const [symbol, setSymbol] = useState('')
+    const [name, setName] = useState('')
+    const [className, setClassName] = useState('wrong')
+    if (empty) {
+        return (
+            <div className="element-single elem">
+                <p></p>
+            </div>
+        )
+    }
+    if (star > 0) {
+        return (
+            <div style={{}}
+                 className="element-single d-flex justify-content-center align-items-center">
+                <b className=''>{'*'.repeat(star)}</b>
+            </div>
+        )
+    }
+    let category = element.category
+    let color = COLOR_CATEGORY[category]
+    return (
+        <div>
+            <div style={{background: element['cpk-hex']}} className={"element-single elem border"}>
+                <div className="elem-inside-top">
+                    <b className='elem-inside atomic'>{element.number}</b>
+                    <p className='elem-inside mass'>{element.atomic_mass.toFixed(2)}</p>
+
+                </div>
+                <div className="elem-inside-main">
+                    {/*<input style={{width: '25px', height: '25px', background: 'transparent',}} value={symbol}*/}
+                    {/*       onChange={(e) => {*/}
+                    {/*           setSymbol(e.target.value)*/}
+                    {/*           if(e.target.value === element.symbol) {*/}
+                    {/*               setClassName('right')*/}
+                    {/*           }else{*/}
+                    {/*               setClassName('wrong')*/}
+                    {/*           }*/}
+                    {/*       }} className={'elem-inside symbol '}/>*/}
+                    <b className='elem-inside symbol'>{element.symbol}</b>
+                    <p className='elem-inside name'>{element.name}</p>
+                </div>
+
+            </div>
+        </div>
+
+    )
+}
+const Group = ({data, number, f = false}) => {
+    const [newData, setNewData] = useState(data)
+    return (
+        <div className={`group ${f && 'group-f'}`}>
+            <div className="justify-content-center periods">
+                {f ? (<b className=''>{'*'.repeat(number - 5)}</b>) : <h5 className="period">{number}</h5>}
+            </div>
+            {newData.map(element => <Element element={element}/>)}
+            {number === 3 && (
+                <div>
+                    <Element star={1}/>
+                    <Element star={2}/>
+                </div>
+            )}
+        </div>
+    )
+}
+const Period = ({data, number}) => {
+    return (
+        <tr>
+            <td><h5 className="period">{number}</h5></td>
+            {data.map((element, index) => <td><Element star={element['star']} index={index}
+                                                       element={element}/></td>)}
+        </tr>
+    )
+}
+const Home = () => {
+    const [group, setGroups] = useState([])
+    const [Fblock, setFblock] = useState([])
+    const [periods, setPeriods] = useState(getPeriods()[0])
+    useEffect(() => {
+        let groups_ = groups()
+        setFblock(groups_[1])
+        setGroups(groups_[0])
+        const periods_ = getPeriods()
+        console.log(periods_)
+        setPeriods(periods_[0])
+    }, []);
+
+    return (
+        <div className='container-fluid pt-2'>
+            {/*<button onClick={() => console.log(getPeriods())}></button>*/}
+            <div className="home">
+                <div>
+                    <h5 className=""> ~ </h5>
+                    {[1, 2, 3, 4, 5, 6, 7].map(item => (
+                        <div className="element-single periods">
+                            <h5 className="period">{item}</h5>
+                        </div>
+                    ))}
+                </div>
+                {group.map((group, index) => <Group number={index} data={group}/>)}
+                <div className="pt-3 pb-5" style={{gridColumnStart: 4, gridColumnEnd: 20}}>
+                    {Fblock.map((group, index) => <Group f number={index + 6} data={group}/>)}
+                </div>
+            </div>
+
+        </div>
+    )
+}
+export default Home

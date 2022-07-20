@@ -1,0 +1,104 @@
+import React, {useEffect, useState} from "react";
+import data from '../../Data/preodic.json'
+import {CATS_METAL, COLOR_CATEGORY, getPadding, getPeriods, groups} from "../../Data";
+
+const Element = ({element, star = 0, empty = false, index}) => {
+    if (empty) {
+        return (
+            <div className="element-single elem">
+                <p></p>
+            </div>
+        )
+    }
+    if (star > 0) {
+        return (
+            <div style={{}}
+                 className="element-single d-flex justify-content-center align-items-center">
+                <b className=''>{'*'.repeat(star)}</b>
+            </div>
+        )
+    }
+    let category = element.category
+    let color = COLOR_CATEGORY[category]
+    return (
+        <div>
+            <div style={{background: element['cpk-hex']}} className="element-single elem border">
+                <div className="elem-inside-top">
+                    <b className='elem-inside atomic'>{element.number}</b>
+                    <p className='elem-inside mass'>{element.atomic_mass.toFixed(2)}</p>
+
+                </div>
+                <div className="elem-inside-main">
+                    <b className='elem-inside symbol'>{element.symbol}</b>
+                    <p className='elem-inside name'>{element.name}</p>
+                </div>
+
+            </div>
+        </div>
+
+    )
+}
+const Period = ({data, number, f}) => {
+    return (
+        <tr>
+            {f && (<td rowSpan={1} colSpan={3}></td>)}
+            <td><h5 style={f ? {textAlign: 'right'} : {}} className="period">{f ? '*'.repeat(number - 5) : number}</h5>
+            </td>
+            {data.map((element, index) => <td><Element star={element['star']} index={index}
+                                                       element={element}/></td>)}
+        </tr>
+    )
+}
+const Home = () => {
+    const [Fblock, setFblock] = useState([])
+    const [periods, setPeriods] = useState(getPeriods()[0])
+    useEffect(() => {
+        const periods_ = getPeriods()
+        console.log(periods_)
+        setPeriods(periods_[0])
+        setFblock(periods_[1])
+    }, []);
+
+    return (
+        <div className='container-fluid pt-2'>
+            <table>
+                <tbody>
+                <tr>
+                    <td><h5 className="period">1</h5></td>
+                    <td><Element element={periods[1][0]}/></td>
+                    <td><Element empty element={periods[1][0]}/></td>
+                    <td rowSpan={3} colSpan={10}>
+                        <div className="" style={{width: '100%', height: '100%'}}>
+                            <div className='cats'>
+                                <div className='cats-content'>
+                                    {/*{CATS_METAL.map(item => (*/}
+                                    {/*    <div className="d-flex">*/}
+                                    {/*        <div*/}
+                                    {/*            style={{height: 10, width: 10, background: COLOR_CATEGORY[item]}}></div>*/}
+                                    {/*        <caption>{item}</caption>*/}
+                                    {/*    </div>*/}
+                                    {/*))}*/}
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td rowSpan={1} colSpan={5}>
+                        <div className="inline-block block-centered align-left"
+                             style={{width: '100%', height: '100%', background: 'red'}}>
+                            {/*<td><Element element={periods[1][0]}/></td>*/}
+                        </div>
+                    </td>
+                    <td><Element element={periods[1][1]}/></td>
+                </tr>
+                {periods.map((item, index) => index !== 1 && <Period number={index} data={item}/>)}
+                <tr>
+                    <td rowSpan={1} colSpan={18}><p></p></td>
+                </tr>
+                {Fblock.map((item, index) => <Period f number={index + 6} data={item}/>)}
+                </tbody>
+            </table>
+        </div>
+    )
+}
+export default Home

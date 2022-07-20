@@ -1,0 +1,34 @@
+
+
+.home {
+    display: grid;
+    grid-template-columns: 30px repeat(18, 1fr);
+    align-content: baseline;
+    grid-auto-columns: 1fr;
+    /*grid-auto-flow: column;*/
+}
+
+.periods {
+    min-width: 0;
+    display: grid;
+    /*justify-content: center;*/
+    align-content: center;
+}
+
+.period {
+    /*color: #3e3e3e;*/
+    font-family: FreeMono, sans-serif;
+}
+
+.container-home {
+    display: flex;
+    justify-content: stretch;
+    /*align-items: center;*/
+}
+.label-diff{
+    font-size: 0.8rem;
+    padding: .25em 0;
+    opacity: .75;
+}
+.select-diff{
+}
