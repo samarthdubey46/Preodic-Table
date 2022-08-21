@@ -55,7 +55,7 @@ const InputElement = ({
                 </div>
                 {((symbols[element.number - 1].inTest && !evaluate) && isStarted) ? (
                     <div className="elem-inside-main">
-                        <input autocapitalize="words" disabled={!isStarted}
+                        <input tabIndex={ORDER[element.number]} disabled={!isStarted}
                                className='input-Element elem-inside symbol'
                                onChange={(e) => {
                                    let temp = e.target.value

@@ -2,9 +2,8 @@ import React, {useEffect, useState} from "react";
 import {D_BLOCK, diff_data, GET_BLOCK, getPeriods, P_BLOCK, S_BLOCK, TestData,} from "../../Data";
 import Element from "../../components/Element";
 import {FirstRow, Groups} from "../../components/Table";
-import data from '../../Data/preodic.json'
-import {useBlocker} from 'react-router'
-
+import {useWindowDimensions} from '../../hooks/index'
+import Confetti from 'react-confetti'
 
 const Period = ({
                     data, number, f, changeInputSymbol, symbols, isStarted,
@@ -27,6 +26,8 @@ const Period = ({
     )
 }
 const Practice = () => {
+    const {width, height} = useWindowDimensions()
+
     const [Fblock, setFblock] = useState([])
     const [periods, setPeriods] = useState(getPeriods()[0])
     const [diff, setDiff] = useState(1)
@@ -34,6 +35,7 @@ const Practice = () => {
     const [isStarted, setIsStared] = useState(false)
     const [evaluate, setEvaluate] = useState(false)
     const [evaluations, setEvaluations] = useState({'s': 0, 'p': 0, 'd': 0, 'f': 0})
+    const [full, setFull] = useState(false)
     useEffect(() => {
         let Data = TestData(diff)
         setSymbols(Data)
@@ -42,24 +44,38 @@ const Practice = () => {
         setFblock(periods_[1])
     }, []);
     useEffect(() => {
+        if (isStarted) {
+            setFull(false)
+        }
+    }, [isStarted]);
+
+    useEffect(() => {
         let Data = TestData(diff)
         setSymbols(Data)
         setEvaluate(false)
     }, [diff]);
     useEffect(() => {
         if (evaluate) {
+            setFull(false)
             let temp = {'s': 0, 'p': 0, 'd': 0, 'f': 0}
+            let inCorrect = 0
             setEvaluations(temp)
             symbols.forEach(item => {
                 if (item.inTest) {
                     if (item.valueSymbol === item.symbol) {
                         temp[GET_BLOCK(item.number)] += 1
+                    } else {
+                        inCorrect++
                     }
                 }
             })
+            if (inCorrect <= 2) {
+                setFull(true)
+            }
             setEvaluations(temp)
         }
     }, [evaluate])
+
 
     const changeInputSymbol = (value, number) => {
         setSymbols(prevState => prevState.map(item => item.number === number ? {...item, 'valueSymbol': value} : item))
@@ -69,6 +85,13 @@ const Practice = () => {
     }
     return (
         <div className='container-fluid pt-2'>
+            {full &&
+                <Confetti
+                    width={width}
+                    height={height}
+                    numberOfPieces={1500}
+                    recycle={false}
+                />}
             <table>
                 <tbody>
                 <Groups/>
