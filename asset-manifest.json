@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Preodic-Table/static/css/main.5cf427ee.css",
-    "main.js": "/Preodic-Table/static/js/main.d74f01d5.js",
+    "main.js": "/Preodic-Table/static/js/main.5b9841a1.js",
     "index.html": "/Preodic-Table/index.html",
     "main.5cf427ee.css.map": "/Preodic-Table/static/css/main.5cf427ee.css.map",
-    "main.d74f01d5.js.map": "/Preodic-Table/static/js/main.d74f01d5.js.map"
+    "main.5b9841a1.js.map": "/Preodic-Table/static/js/main.5b9841a1.js.map"
   },
   "entrypoints": [
     "static/css/main.5cf427ee.css",
-    "static/js/main.d74f01d5.js"
+    "static/js/main.5b9841a1.js"
   ]
 }
