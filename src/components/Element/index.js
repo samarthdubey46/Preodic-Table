@@ -56,7 +56,7 @@ const InputElement = ({
                 {((symbols[element.number - 1].inTest && !evaluate) && isStarted) ? (
                     <div className="elem-inside-main">
                         <input tabIndex={ORDER[element.number]} disabled={!isStarted}
-                               className='input-Element elem-inside symbol'
+                               className='input-Element elem-inside'
                                onChange={(e) => {
                                    let temp = e.target.value
                                    if (symbols[element.number - 1].valueSymbol.length === 0 && temp.length === 1) {
