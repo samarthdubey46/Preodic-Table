@@ -10,7 +10,7 @@ Whether you're preparing for chemistry exams, revising element symbols, or just 
 https://samarthdubey46.github.io/Preodic-Table/
 
 ## 📸 Preview
-![demo](assets/demo.gif)
+![demo](demo.gif)
 
 ## ✨ Features
 
